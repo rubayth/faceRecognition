@@ -46,12 +46,6 @@ class App extends Component {
     }
   }
 
-  componentDidMount(){
-    fetch('http://localhost:3000')
-    .then(response => response.json())
-    .then(console.log)
-  }
-
   loadUser = (data) => {
     this.setState({user: {
       id: data.id,
@@ -90,7 +84,20 @@ class App extends Component {
     app.models.predict(
       Clarifai.FACE_DETECT_MODEL,
       this.state.input)
-      .then(response => this.displayFace(this.calculateFaceLocation(response)))
+      .then(response => {
+        fetch('http://localhost:3000/image', {
+          method: 'put',
+          headers: {'Content-Type' : 'application/json'},
+          body: JSON.stringify({
+            id: this.state.user.id
+          })
+        })
+        .then(response => response.json())
+        .then(count => {
+          this.setState(Object.assign(this.state.user, {entries:count}))
+        })
+        this.displayFace(this.calculateFaceLocation(response))
+      })
       .catch(err => console.log(err));
   }
 
