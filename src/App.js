@@ -137,7 +137,7 @@ class App extends Component {
               loadUser={this.loadUser}
               onRouteChange={this.onRouteChange}/>
           : <Register l
-              oadUser={this.loadUser} 
+              loadUser={this.loadUser} 
               onRouteChange={this.onRouteChange}/>
         )
         
