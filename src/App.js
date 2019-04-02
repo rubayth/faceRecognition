@@ -77,7 +77,7 @@ class App extends Component {
 
   onButtonSubmit = () => {
     this.setState({imageUrl:this.state.input});
-      fetch('http://localhost:3000/imageurl', {
+      fetch('https://fathomless-journey-65920.herokuapp.com/imageurl', {
         method: 'post',
         headers: {'Content-Type' : 'application/json'},
         body: JSON.stringify({
@@ -86,20 +86,22 @@ class App extends Component {
       })
       .then(response => response.json())
       .then(response => {
-        fetch('http://localhost:3000/image', {
-          method: 'put',
-          headers: {'Content-Type' : 'application/json'},
-          body: JSON.stringify({
-            id: this.state.user.id
+        if(response !== 'unable to work with API'){
+          fetch('https://fathomless-journey-65920.herokuapp.com/image', {
+            method: 'put',
+            headers: {'Content-Type' : 'application/json'},
+            body: JSON.stringify({
+              id: this.state.user.id
+              })
           })
-        })
-        .then(response => response.json())
-        .then(count => {
-          this.setState(Object.assign(this.state.user, {entries:count}))
-        })
-        .catch(console.log)
-        this.displayFace(this.calculateFaceLocation(response))
-      })
+          .then(response => response.json())
+          .then(count => {
+            this.setState(Object.assign(this.state.user, {entries:count}))
+          })
+          .catch(console.log)
+          this.displayFace(this.calculateFaceLocation(response))
+        }
+      }) 
       .catch(err => console.log(err));
   }
 
