@@ -9,3 +9,4 @@ To use:
 Also keeps track of how many faces you detected.
  
 Try it out here: https://face-detect-project.herokuapp.com/
+
