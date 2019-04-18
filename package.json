@@ -1,10 +1,11 @@
 {
   "name": "facerecognition",
   "version": "0.1.0",
-  "homepage": "https://face-detect-project.herokuapp.com/",
+  "homepage": "http://rubayth.com/faceRecognition",
   "private": true,
   "dependencies": {
     "clarifai": "^2.9.0",
+    "gh-pages": "^2.0.1",
     "react": "^16.8.4",
     "react-dom": "^16.8.4",
     "react-particles-js": "^2.4.2",
@@ -18,7 +19,7 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "predeploy": "npm run build",
-    "deploy": "git push heroku master"
+    "deploy": "gh-pages -d build"
   },
   "eslintConfig": {
     "extends": "react-app"
